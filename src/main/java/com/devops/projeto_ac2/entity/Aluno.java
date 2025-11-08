@@ -1,18 +1,17 @@
 package com.devops.projeto_ac2.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 @Builder
-@Table(name = "tb_user")
-public class User {
+@Table(name = "tb_alunos")
+public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +19,14 @@ public class User {
 
     private String nome;
 
+    private double mediaFinal;
+
+    private boolean concluiu;
+
     @Embedded
-    private User_RA User_RA;
+    private AlunoRA AlunoRA;
+
+    @Builder.Default
+    private Integer cursosAdicionais = 0;
 
 }

@@ -1,7 +1,5 @@
 package com.devops.projeto_ac2.entity;
 
-import java.util.Objects;
-
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User_RA {
+public class AlunoRA {
 
     private String registroMatricula;
 
