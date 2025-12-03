@@ -386,7 +386,7 @@ Este projeto é parte de uma atividade acadêmica. Sugestões e melhorias são b
 
 ## 👨‍💻 Autor
 
-Matheus Diogo - 190436
+Matheus Diogo - 190435
 Gustavo Valadares Fukui - 234719
 ---
 
