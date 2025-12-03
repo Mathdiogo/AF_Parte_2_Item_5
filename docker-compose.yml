@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # RabbitMQ - Sistema de Mensageria
+  rabbitmq:
+    image: rabbitmq:3.13-management-alpine
+    container_name: ac2-rabbitmq
+    ports:
+      - "5672:5672"    # Porta AMQP para conexões da aplicação
+      - "15672:15672"  # Porta do Management UI (interface web)
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - ac2-network
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # H2 Database Console (opcional - para visualizar o banco de dados)
+  # Descomente se quiser um console web para o H2
+  # h2-console:
+  #   image: oscarfonts/h2:latest
+  #   container_name: ac2-h2-console
+  #   ports:
+  #     - "8082:8082"
+  #   environment:
+  #     H2_OPTIONS: -webAllowOthers -tcpAllowOthers
+  #   networks:
+  #     - ac2-network
+
+volumes:
+  rabbitmq_data:
+    driver: local
+
+networks:
+  ac2-network:
+    driver: bridge

@@ -2,6 +2,7 @@ package com.devops.projeto_ac2.application.usecases;
 
 import com.devops.projeto_ac2.domain.entities.Aluno;
 import com.devops.projeto_ac2.domain.exceptions.DomainException;
+import com.devops.projeto_ac2.domain.ports.EventPublisher;
 import com.devops.projeto_ac2.domain.repositories.AlunoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -17,7 +18,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * Testes unitários para CriarAlunoUseCase
- * Usando Mockito para mockar dependências
+ * Usando Mockito para mockar dependências (incluindo EventPublisher)
  */
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Testes do Use Case Criar Aluno")
@@ -25,6 +26,9 @@ class CriarAlunoUseCaseTest {
     
     @Mock
     private AlunoRepository alunoRepository;
+    
+    @Mock
+    private EventPublisher eventPublisher;
     
     @InjectMocks
     private CriarAlunoUseCase useCase;

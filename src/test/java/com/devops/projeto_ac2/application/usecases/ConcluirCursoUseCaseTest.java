@@ -2,6 +2,7 @@ package com.devops.projeto_ac2.application.usecases;
 
 import com.devops.projeto_ac2.domain.entities.Aluno;
 import com.devops.projeto_ac2.domain.exceptions.AlunoNotFoundException;
+import com.devops.projeto_ac2.domain.ports.EventPublisher;
 import com.devops.projeto_ac2.domain.repositories.AlunoRepository;
 import com.devops.projeto_ac2.domain.valueobjects.NomeAluno;
 import com.devops.projeto_ac2.domain.valueobjects.RegistroAcademico;
@@ -19,7 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 /**
- * Testes unitários para ConcluirCursoUseCase
+ * Testes unitários para ConcluirCursoUseCase (com EventPublisher mockado)
  */
 @ExtendWith(MockitoExtension.class)
 @DisplayName("Testes do Use Case Concluir Curso")
@@ -27,6 +28,9 @@ class ConcluirCursoUseCaseTest {
     
     @Mock
     private AlunoRepository alunoRepository;
+    
+    @Mock
+    private EventPublisher eventPublisher;
     
     @InjectMocks
     private ConcluirCursoUseCase useCase;
