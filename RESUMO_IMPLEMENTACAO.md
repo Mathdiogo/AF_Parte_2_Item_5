@@ -199,54 +199,6 @@ Mostrar logs de 2 consumers:
 ✅ Dependency Inversion (Ports/Adapters)
 ```
 
----
-
-## 🎓 RESPOSTA PARA ITEM 3a DA AF
-
-### "Justifique a importância dos mocks nos testes com IA, MQTT, RabbitMQ e Kafka"
-
-#### ✅ ISOLAMENTO
-Testes unitários devem testar **apenas** a lógica do componente, não a infraestrutura externa. Mocks garantem que falhas no RabbitMQ (ou qualquer broker) não quebrem os testes.
-
-#### ✅ VELOCIDADE
-- **Sem mocks:** Testes precisam conectar ao RabbitMQ, publicar mensagem, aguardar consumo → 5-10 segundos/teste
-- **Com mocks:** Verifica apenas se método foi chamado → 10-50 ms/teste
-- Em 100 testes: diferença de **8 minutos**!
-
-#### ✅ CONFIABILIDADE
-Testes não falham por:
-- RabbitMQ não estar rodando
-- Timeout de conexão
-- Problemas de rede
-- Containers não disponíveis
-
-#### ✅ FLEXIBILIDADE
-Mocks permitem simular cenários difíceis:
-```java
-// Simular falha de conexão
-doThrow(new RuntimeException("RabbitMQ indisponível"))
-    .when(eventPublisher).publicarAlunoCriado(any());
-
-// Simular timeout
-// Simular mensagem corrompida
-// etc.
-```
-
-#### ✅ CI/CD
-Pipeline de integração contínua roda testes unitários:
-- Sem necessidade de containers
-- Sem configuração de infraestrutura
-- Feedback imediato
-- Build mais rápido
-
-#### 📝 Conclusão
-**Testes unitários (mocks)** validam **lógica de negócio**.  
-**Testes de integração (real)** validam **comunicação e infraestrutura**.
-
-Ambos são importantes, mas para propósitos diferentes!
-
----
-
 ## 🏆 DIFERENCIAIS IMPLEMENTADOS
 
 ✅ **Clean Architecture mantida** - Domínio completamente isolado  
@@ -259,77 +211,7 @@ Ambos são importantes, mas para propósitos diferentes!
 ✅ **Documentação detalhada** - 4 documentos completos  
 ✅ **Script de demonstração** - Automatiza apresentação  
 
----
 
-## 📋 CHECKLIST FINAL
-
-### Item 5 da AF - COMPLETO ✅
-- [x] Implementar recurso de microserviços
-- [x] Evoluir monolito Clean Architecture + DDD
-- [x] Usar recursos do Spring Boot (AMQP)
-- [x] Demonstrar DevOps (Docker, CI-ready)
-- [x] Demonstrar qualidade (Testes, JaCoCo)
-- [x] Preparar demonstração (Guias prontos)
-
-### Extras Implementados ✅
-- [x] Documentação técnica completa
-- [x] Guia de testes de API
-- [x] Script PowerShell de demonstração
-- [x] Justificativa detalhada de mocks (Item 3a)
-- [x] Logs formatados para apresentação
-- [x] 4 tipos diferentes de microserviços
-
----
-
-## 🎬 PRÓXIMOS PASSOS
-
-### Para Apresentação
-1. ✅ Código pronto
-2. ✅ Documentação completa
-3. ✅ Testes funcionando
-4. ⏳ Gravar vídeo (use guias como roteiro)
-5. ⏳ Preparar slides (opcional)
-
-### Para Evoluir Ainda Mais (Opcional)
-- [ ] Implementar Kafka para event streaming
-- [ ] Adicionar MQTT para IoT
-- [ ] Implementar LangChain4J (IA)
-- [ ] Adicionar Blockchain para auditoria
-- [ ] Dead Letter Queue (DLQ)
-- [ ] Testes de integração com Testcontainers
-
----
-
-## 💡 DICAS PARA O VÍDEO
-
-### ✅ O que mostrar
-1. Arquitetura (diagrama)
-2. Código (eventos, publisher, consumer)
-3. Execução (RabbitMQ + aplicação)
-4. API em ação (Swagger)
-5. Logs dos microserviços
-6. RabbitMQ Management UI
-7. Testes com mocks
-8. JaCoCo (cobertura)
-
-### ⏱️ Sugestão de tempo
-- Introdução: 2 min
-- Arquitetura: 3 min
-- Código: 5 min
-- Demonstração: 7 min
-- Testes: 3 min
-- Conclusão: 2 min
-- **Total: ~20 minutos**
-
-### 🎯 Pontos-chave para enfatizar
-1. **Evolução:** De monolito para microserviços
-2. **Clean Architecture:** Domínio isolado, ports/adapters
-3. **DDD:** Eventos de domínio, entidades ricas
-4. **Mensageria:** Desacoplamento, escalabilidade
-5. **Qualidade:** Testes, mocks, cobertura
-6. **DevOps:** Docker, configuração, CI-ready
-
----
 
 ## 🎉 CONCLUSÃO
 
